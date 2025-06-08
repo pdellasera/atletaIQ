@@ -160,7 +160,13 @@ function MobileHomepage() {
   const [selectedCompetition, setSelectedCompetition] = useState("Juegos Panamericanos")
   const [selectedLogisticsCompetition, setSelectedLogisticsCompetition] = useState("Juegos Olímpicos")
 
-  console.log(setSelectedCompetition,setSelectedLogisticsCompetition)
+  // Filtrar atletas basado en el término de búsqueda
+  const filteredAthletes = athletesCompetitionData.filter(
+    (athlete) =>
+      athlete.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      athlete.discipline.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      athlete.status.toLowerCase().includes(searchTerm.toLowerCase()),
+  )
 
   return (
     <div className="px-4 py-4 space-y-6">
@@ -221,7 +227,15 @@ function MobileHomepage() {
               <Calendar className="h-5 w-5 text-gray-700" />
               <MobileCardTitle className="text-gray-900">Competencias Futuras</MobileCardTitle>
             </div>
-            <div className="flex items-center space-x-1 text-sm text-gray-600 border border-gray-200 px-2 py-1 rounded-md">
+            <div
+              className="flex items-center space-x-1 text-sm text-gray-600 border border-gray-200 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-50"
+              onClick={() => {
+                const competitions = ["Juegos Panamericanos", "Juegos Olímpicos", "Mundial 2024", "Sudamericanos 2024"]
+                const currentIndex = competitions.indexOf(selectedCompetition)
+                const nextIndex = (currentIndex + 1) % competitions.length
+                setSelectedCompetition(competitions[nextIndex])
+              }}
+            >
               <span className="font-medium">{selectedCompetition}</span>
               <ChevronDown className="h-4 w-4" />
             </div>
@@ -231,39 +245,45 @@ function MobileHomepage() {
           <div className="space-y-4">
             {/* Lista de Atletas */}
             <div>
-              <div className="grid grid-cols-3 gap-2 text-xs font-medium text-gray-600 pb-2 border-b border-gray-200 mb-3">
-                <span>Lista Larga</span>
-                <span>Lista Corta</span>
-                <span>Estado</span>
-              </div>
               <div className="space-y-3">
-                {athletesCompetitionData.map((athlete) => (
-                  <div key={athlete.id} className="flex items-center space-x-3 p-3 border border-gray-100 rounded-lg">
-                    <Avatar className="h-8 w-8 ring-2 ring-gray-200">
-                      <AvatarImage
-                        src={athlete.avatar || "/placeholder.svg"}
-                        alt={`${athlete.name} - ${athlete.discipline}`}
-                        className="object-cover"
-                      />
-                      <AvatarFallback className="bg-gray-100 text-gray-700 text-xs font-medium">
-                        {athlete.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1 grid grid-cols-3 gap-2 text-sm">
-                      <div>
+                {filteredAthletes.map((athlete) => (
+                  <div key={athlete.id} className="p-3 border border-gray-100 rounded-lg">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <Avatar className="h-10 w-10 ring-2 ring-gray-200">
+                        <AvatarImage
+                          src={athlete.avatar || "/placeholder.svg"}
+                          alt={`${athlete.name} - ${athlete.discipline}`}
+                          className="object-cover"
+                        />
+                        <AvatarFallback className="bg-gray-100 text-gray-700 text-xs font-medium">
+                          {athlete.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
                         <div className="font-medium text-gray-900">{athlete.name}</div>
                         <div className="text-xs text-gray-500">{athlete.discipline}</div>
                       </div>
-                      <span className="text-gray-600">{athlete.listaLarga}</span>
                       <Badge
                         variant={athlete.status === "Confirmado" ? "default" : "secondary"}
                         className={`text-xs ${athlete.status === "Confirmado" ? "bg-orange-600" : ""}`}
                       >
                         {athlete.status}
                       </Badge>
+                    </div>
+
+                    {/* Información adicional en filas separadas */}
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Lista Larga:</span>
+                        <span className="font-medium text-gray-900">{athlete.listaLarga}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Lista Corta:</span>
+                        <span className="font-medium text-gray-900">{athlete.listaCorta}</span>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -352,7 +372,15 @@ function MobileHomepage() {
         <MobileCardHeader>
           <div className="flex items-center justify-between">
             <MobileCardTitle className="text-gray-900">Logística por Federación</MobileCardTitle>
-            <div className="flex items-center space-x-1 text-gray-600 border border-gray-200 px-2 py-1 rounded-md">
+            <div
+              className="flex items-center space-x-1 text-gray-600 border border-gray-200 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-50"
+              onClick={() => {
+                const competitions = ["Juegos Olímpicos", "Juegos Panamericanos", "Mundial 2024", "Sudamericanos 2024"]
+                const currentIndex = competitions.indexOf(selectedLogisticsCompetition)
+                const nextIndex = (currentIndex + 1) % competitions.length
+                setSelectedLogisticsCompetition(competitions[nextIndex])
+              }}
+            >
               <span className="text-xs font-medium">{selectedLogisticsCompetition}</span>
               <ChevronDown className="h-3 w-3" />
             </div>
@@ -412,7 +440,15 @@ function MobileHomepage() {
         <MobileCardHeader>
           <div className="flex items-center justify-between">
             <MobileCardTitle className="text-gray-900">Logística por Competencia</MobileCardTitle>
-            <div className="flex items-center space-x-1 text-gray-600 border border-gray-200 px-2 py-1 rounded-md">
+            <div
+              className="flex items-center space-x-1 text-gray-600 border border-gray-200 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-50"
+              onClick={() => {
+                const competitions = ["Juegos Olímpicos", "Juegos Panamericanos", "Mundial 2024", "Sudamericanos 2024"]
+                const currentIndex = competitions.indexOf(selectedLogisticsCompetition)
+                const nextIndex = (currentIndex + 1) % competitions.length
+                setSelectedLogisticsCompetition(competitions[nextIndex])
+              }}
+            >
               <span className="text-xs font-medium">{selectedLogisticsCompetition}</span>
               <ChevronDown className="h-3 w-3" />
             </div>
@@ -462,7 +498,13 @@ function DesktopHomepage() {
   const [selectedCompetition, setSelectedCompetition] = useState("Juegos Panamericanos")
   const [selectedLogisticsCompetition, setSelectedLogisticsCompetition] = useState("Juegos Olímpicos")
 
-  console.log(searchTerm,setSearchTerm , setSelectedCompetition, setSelectedLogisticsCompetition)
+  // Agregar el filtro de búsqueda
+  const filteredAthletes = athletesCompetitionData.filter(
+    (athlete) =>
+      athlete.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      athlete.discipline.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      athlete.status.toLowerCase().includes(searchTerm.toLowerCase()),
+  )
 
   return (
     <div className="space-y-8">
@@ -484,6 +526,19 @@ function DesktopHomepage() {
             </CardContent>
           </Card>
         ))}
+      </div>
+
+      {/* Search Bar - Desktop */}
+      <div className="max-w-md">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Input
+            placeholder="Buscar atletas, competencias..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10 border-gray-200 bg-white"
+          />
+        </div>
       </div>
 
       {/* Main Dashboard Grid */}
@@ -509,7 +564,20 @@ function DesktopHomepage() {
                 <Calendar className="h-5 w-5 text-gray-700" />
                 <CardTitle className="text-gray-900">Competencias Futuras</CardTitle>
               </div>
-              <div className="flex items-center space-x-2 text-gray-600 border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+              <div
+                className="flex items-center space-x-2 text-gray-600 border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
+                onClick={() => {
+                  const competitions = [
+                    "Juegos Panamericanos",
+                    "Juegos Olímpicos",
+                    "Mundial 2024",
+                    "Sudamericanos 2024",
+                  ]
+                  const currentIndex = competitions.indexOf(selectedCompetition)
+                  const nextIndex = (currentIndex + 1) % competitions.length
+                  setSelectedCompetition(competitions[nextIndex])
+                }}
+              >
                 <span className="text-sm font-medium">{selectedCompetition}</span>
                 <ChevronDown className="h-4 w-4" />
               </div>
@@ -525,7 +593,7 @@ function DesktopHomepage() {
                   <span>Estado</span>
                 </div>
                 <div className="space-y-3">
-                  {athletesCompetitionData.map((athlete) => (
+                  {filteredAthletes.map((athlete) => (
                     <div
                       key={athlete.id}
                       className="flex items-center space-x-3 p-3 border border-gray-100 rounded-lg hover:shadow-sm transition-shadow"
@@ -649,7 +717,20 @@ function DesktopHomepage() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="text-base text-gray-900">Logística por Federación</CardTitle>
-              <div className="flex items-center space-x-1 text-gray-600 border border-gray-200 px-2 py-1 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+              <div
+                className="flex items-center space-x-1 text-gray-600 border border-gray-200 px-2 py-1 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
+                onClick={() => {
+                  const competitions = [
+                    "Juegos Olímpicos",
+                    "Juegos Panamericanos",
+                    "Mundial 2024",
+                    "Sudamericanos 2024",
+                  ]
+                  const currentIndex = competitions.indexOf(selectedLogisticsCompetition)
+                  const nextIndex = (currentIndex + 1) % competitions.length
+                  setSelectedLogisticsCompetition(competitions[nextIndex])
+                }}
+              >
                 <span className="text-sm font-medium">{selectedLogisticsCompetition}</span>
                 <ChevronDown className="h-4 w-4" />
               </div>
@@ -713,7 +794,15 @@ function DesktopHomepage() {
               <Users className="h-5 w-5 text-gray-700" />
               <CardTitle className="text-gray-900">Logística por Competencia</CardTitle>
             </div>
-            <div className="flex items-center space-x-1 text-gray-600 border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+            <div
+              className="flex items-center space-x-1 text-gray-600 border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
+              onClick={() => {
+                const competitions = ["Juegos Olímpicos", "Juegos Panamericanos", "Mundial 2024", "Sudamericanos 2024"]
+                const currentIndex = competitions.indexOf(selectedLogisticsCompetition)
+                const nextIndex = (currentIndex + 1) % competitions.length
+                setSelectedLogisticsCompetition(competitions[nextIndex])
+              }}
+            >
               <span className="text-sm font-medium">{selectedLogisticsCompetition}</span>
               <ChevronDown className="h-4 w-4" />
             </div>
