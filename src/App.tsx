@@ -6,6 +6,7 @@ import CrearJuegoPage from "./pages/CrearJuegoPage"
 import "./App.css"
 import AthletesPage from "./pages/AtletaPage"
 import CompetitionsPage from "./pages/CompeticionPage"
+import ReportsPage from "./pages/ReportPage"
 
 function App() {
   return (
@@ -15,10 +16,10 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/atletas" element={<AthletesPage />} />
           <Route path="/competencias" element={<CompetitionsPage />} />
+          <Route path="/reportes" element={<ReportsPage />} />
           <Route path="/configuracion" element={<ConfiguracionPage />} />
           <Route path="/configuracion/crear-cuenta" element={<CrearCuentaPage />} />
           <Route path="/configuracion/crear-juego" element={<CrearJuegoPage />} />
-          <Route path="/reportes" element={<div>Reportes Page</div>} />
         </Routes>
       </div>
     </Router>
