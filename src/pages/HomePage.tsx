@@ -160,6 +160,8 @@ function MobileHomepage() {
   const [selectedCompetition, setSelectedCompetition] = useState("Juegos Panamericanos")
   const [selectedLogisticsCompetition, setSelectedLogisticsCompetition] = useState("Juegos Olímpicos")
 
+  console.log(setSelectedCompetition,setSelectedLogisticsCompetition)
+
   return (
     <div className="px-4 py-4 space-y-6">
       {/* Quick Stats */}
@@ -459,6 +461,8 @@ function DesktopHomepage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCompetition, setSelectedCompetition] = useState("Juegos Panamericanos")
   const [selectedLogisticsCompetition, setSelectedLogisticsCompetition] = useState("Juegos Olímpicos")
+
+  console.log(searchTerm,setSearchTerm , setSelectedCompetition, setSelectedLogisticsCompetition)
 
   return (
     <div className="space-y-8">

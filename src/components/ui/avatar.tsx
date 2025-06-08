@@ -8,12 +8,12 @@ interface AvatarProps {
 interface AvatarImageProps {
   src?: string
   alt?: string
-  className: string
+  className?: string
 }
 
 interface AvatarFallbackProps {
   children: ReactNode,
-  className: string
+  className?: string
 }
 
 export function Avatar({ children, className = "" }: AvatarProps) {
