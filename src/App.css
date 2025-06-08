@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .safe-area-pb {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-pt {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* Mobile-first touch interactions */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  /* Smooth scrolling for mobile */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide scrollbars on mobile while keeping functionality */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Mobile-optimized focus states */
+  .focus-mobile {
+    @apply focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2;
+  }
+
+  /* Touch-friendly button states */
+  .btn-touch {
+    @apply active:scale-95 transition-transform duration-100;
+  }
+
+  /* Mobile card hover effects */
+  .card-mobile {
+    @apply active:scale-[0.98] transition-transform duration-150;
+  }
+}
+
+/* Custom scrollbar for desktop */
+@media (min-width: 768px) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+/* Mobile-specific animations */
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.3s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* Mobile-optimized typography */
+@media (max-width: 768px) {
+  h1 {
+    @apply text-xl;
+  }
+
+  h2 {
+    @apply text-lg;
+  }
+
+  h3 {
+    @apply text-base;
+  }
+
+  /* Ensure minimum touch target size */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+  }
+}
+
+/* PWA-style loading states */
+.loading-skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
