@@ -1,5 +1,3 @@
-"use client"
-
 import { Home, Users, BarChart3, Settings, Trophy } from "lucide-react"
 import { useLocation, useNavigate } from "react-router-dom"
 
