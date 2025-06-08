@@ -314,6 +314,7 @@ const iconMap = {
   Calculator,
 }
 
+
 // Componente para mostrar el estado del reporte
 function ReportStatus({ status }: { status: ReportTemplate["status"] }) {
   const getStatusConfig = (status: ReportTemplate["status"]) => {
@@ -614,6 +615,287 @@ function ReportPreview({ report, onClose }: { report: ReportTemplate; onClose: (
   )
 }
 
+// Agregar el componente CreateCustomReportModal después del componente ReportPreview y antes del componente MobileReports
+
+// Componente para crear reporte personalizado
+function CreateCustomReportModal({
+  onClose,
+  onSave,
+}: { onClose: () => void; onSave: (report: Partial<ReportTemplate>) => void }) {
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    category: "Rendimiento" as ReportTemplate["category"],
+    frequency: "Mensual" as ReportTemplate["frequency"],
+    priority: "Media" as ReportTemplate["priority"],
+    parameters: {
+      dateRange: true,
+      athletes: false,
+      competitions: false,
+      disciplines: false,
+      budget: false,
+    },
+    charts: [] as string[],
+    exportFormats: ["PDF"] as ("PDF" | "Excel" | "CSV" | "PowerPoint")[],
+    icon: "FileText",
+  })
+
+  const [availableCharts] = useState([
+    "Gráfico de barras",
+    "Línea de tiempo",
+    "Gráfico de pastel",
+    "Radar de habilidades",
+    "Comparativo histórico",
+    "Matriz de potencial",
+    "Análisis de tendencias",
+    "Mapa de calor",
+    "Gráfico de dispersión",
+    "Timeline de eventos",
+  ])
+
+  const [availableIcons] = useState([
+    { name: "TrendingUp", label: "Tendencia" },
+    { name: "BarChart3", label: "Gráfico de barras" },
+    { name: "PieChart", label: "Gráfico circular" },
+    { name: "Target", label: "Objetivo" },
+    { name: "Trophy", label: "Trofeo" },
+    { name: "Medal", label: "Medalla" },
+    { name: "DollarSign", label: "Financiero" },
+    { name: "Calculator", label: "Calculadora" },
+    { name: "Heart", label: "Salud" },
+    { name: "Truck", label: "Logística" },
+  ])
+
+  const handleParameterChange = (param: keyof typeof formData.parameters) => {
+    setFormData((prev) => ({
+      ...prev,
+      parameters: {
+        ...prev.parameters,
+        [param]: !prev.parameters[param],
+      },
+    }))
+  }
+
+  const handleChartToggle = (chart: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      charts: prev.charts.includes(chart) ? prev.charts.filter((c) => c !== chart) : [...prev.charts, chart],
+    }))
+  }
+
+  const handleFormatToggle = (format: "PDF" | "Excel" | "CSV" | "PowerPoint") => {
+    setFormData((prev) => ({
+      ...prev,
+      exportFormats: prev.exportFormats.includes(format)
+        ? prev.exportFormats.filter((f) => f !== format)
+        : [...prev.exportFormats, format],
+    }))
+  }
+
+  const handleSave = () => {
+    if (!formData.name.trim() || !formData.description.trim()) {
+      alert("Por favor completa el nombre y descripción del reporte")
+      return
+    }
+
+    if (formData.charts.length === 0) {
+      alert("Por favor selecciona al menos un gráfico")
+      return
+    }
+
+    const newReport: Partial<ReportTemplate> = {
+      ...formData,
+      id: Date.now(), // ID temporal
+      type: "Personalizado",
+      status: "Activo",
+    }
+
+    onSave(newReport)
+    onClose()
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-4 border-b border-gray-200 flex items-center justify-between">
+          <h3 className="text-lg font-semibold">Crear Reporte Personalizado</h3>
+          <Button variant="ghost" size="sm" onClick={onClose} className="p-1">
+            <X className="h-5 w-5" />
+          </Button>
+        </div>
+
+        <div className="p-6 space-y-6">
+          {/* Información básica */}
+          <div className="space-y-4">
+            <h4 className="font-medium text-gray-900">Información Básica</h4>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Nombre del Reporte *</label>
+              <Input
+                value={formData.name}
+                onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                placeholder="Ej: Análisis de Rendimiento Trimestral"
+                className="w-full"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Descripción *</label>
+              <textarea
+                value={formData.description}
+                onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
+                placeholder="Describe el propósito y contenido del reporte..."
+                className="w-full p-2 border border-gray-300 rounded-md resize-none h-20 text-sm"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
+                <select
+                  value={formData.category}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, category: e.target.value as ReportTemplate["category"] }))
+                  }
+                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                >
+                  <option value="Rendimiento">Rendimiento</option>
+                  <option value="Financiero">Financiero</option>
+                  <option value="Competencias">Competencias</option>
+                  <option value="Atletas">Atletas</option>
+                  <option value="Logística">Logística</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Frecuencia</label>
+                <select
+                  value={formData.frequency}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, frequency: e.target.value as ReportTemplate["frequency"] }))
+                  }
+                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                >
+                  <option value="Diario">Diario</option>
+                  <option value="Semanal">Semanal</option>
+                  <option value="Mensual">Mensual</option>
+                  <option value="Trimestral">Trimestral</option>
+                  <option value="Anual">Anual</option>
+                  <option value="Bajo demanda">Bajo demanda</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Prioridad</label>
+                <select
+                  value={formData.priority}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, priority: e.target.value as ReportTemplate["priority"] }))
+                  }
+                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                >
+                  <option value="Baja">Baja</option>
+                  <option value="Media">Media</option>
+                  <option value="Alta">Alta</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Icono</label>
+                <select
+                  value={formData.icon}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, icon: e.target.value }))}
+                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                >
+                  {availableIcons.map((icon) => (
+                    <option key={icon.name} value={icon.name}>
+                      {icon.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Parámetros */}
+          <div className="space-y-4">
+            <h4 className="font-medium text-gray-900">Parámetros del Reporte</h4>
+            <div className="grid grid-cols-2 gap-3">
+              {Object.entries(formData.parameters).map(([key, value]) => {
+                const labels = {
+                  dateRange: "Rango de fechas",
+                  athletes: "Atletas",
+                  competitions: "Competencias",
+                  disciplines: "Disciplinas",
+                  budget: "Presupuesto",
+                }
+
+                return (
+                  <label key={key} className="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={value}
+                      onChange={() => handleParameterChange(key as keyof typeof formData.parameters)}
+                      className="rounded border-gray-300"
+                    />
+                    <span className="text-sm">{labels[key as keyof typeof labels]}</span>
+                  </label>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Gráficos */}
+          <div className="space-y-4">
+            <h4 className="font-medium text-gray-900">Gráficos Incluidos *</h4>
+            <div className="grid grid-cols-2 gap-2">
+              {availableCharts.map((chart) => (
+                <label key={chart} className="flex items-center space-x-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.charts.includes(chart)}
+                    onChange={() => handleChartToggle(chart)}
+                    className="rounded border-gray-300"
+                  />
+                  <span className="text-sm">{chart}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Formatos de exportación */}
+          <div className="space-y-4">
+            <h4 className="font-medium text-gray-900">Formatos de Exportación</h4>
+            <div className="flex flex-wrap gap-2">
+              {(["PDF", "Excel", "CSV", "PowerPoint"] as const).map((format) => (
+                <Badge
+                  key={format}
+                  variant={formData.exportFormats.includes(format) ? "default" : "outline"}
+                  className={`cursor-pointer ${formData.exportFormats.includes(format) ? "bg-orange-600" : ""}`}
+                  onClick={() => handleFormatToggle(format)}
+                >
+                  {format}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="p-4 border-t border-gray-200 flex justify-end space-x-2">
+          <Button variant="outline" onClick={onClose}>
+            Cancelar
+          </Button>
+          <Button onClick={handleSave} className="bg-orange-600 hover:bg-orange-700">
+            Crear Reporte
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // Componente Mobile
 function MobileReports() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -623,6 +905,8 @@ function MobileReports() {
   const [selectedReport, setSelectedReport] = useState<ReportTemplate | null>(null)
   const [showGenerateModal, setShowGenerateModal] = useState(false)
   const [showPreview, setShowPreview] = useState(false)
+  // Después de la línea: const [showPreview, setShowPreview] = useState(false)
+  const [showCreateModal, setShowCreateModal] = useState(false)
 
   // Obtener categorías únicas para el filtro
   const categories = useMemo(() => {
@@ -657,6 +941,14 @@ function MobileReports() {
   const handlePreviewReport = (report: ReportTemplate) => {
     setSelectedReport(report)
     setShowPreview(true)
+  }
+
+  // Agregar el handler para guardar el reporte:
+  // Después de handlePreviewReport, agregar:
+  const handleSaveCustomReport = (newReport: Partial<ReportTemplate>) => {
+    // Aquí podrías agregar la lógica para guardar el reporte
+    // Por ahora solo mostramos una confirmación
+    alert(`Reporte "${newReport.name}" creado exitosamente`)
   }
 
   return (
@@ -739,7 +1031,7 @@ function MobileReports() {
       )}
 
       {/* Botón para crear reporte personalizado */}
-      <Button className="w-full h-12 bg-orange-600 hover:bg-orange-700">
+      <Button className="w-full h-12 bg-orange-600 hover:bg-orange-700" onClick={() => setShowCreateModal(true)}>
         <Plus className="h-4 w-4 mr-2" />
         Crear Reporte Personalizado
       </Button>
@@ -823,6 +1115,10 @@ function MobileReports() {
       )}
 
       {showPreview && selectedReport && <ReportPreview report={selectedReport} onClose={() => setShowPreview(false)} />}
+
+      {showCreateModal && (
+        <CreateCustomReportModal onClose={() => setShowCreateModal(false)} onSave={handleSaveCustomReport} />
+      )}
     </div>
   )
 }
@@ -835,6 +1131,8 @@ function DesktopReports() {
   const [selectedReport, setSelectedReport] = useState<ReportTemplate | null>(reportTemplates[0])
   const [showGenerateModal, setShowGenerateModal] = useState(false)
   const [showPreview, setShowPreview] = useState(false)
+  // Después de la línea: const [showPreview, setShowPreview] = useState(false)
+  const [showCreateModal, setShowCreateModal] = useState(false)
 
   // Obtener categorías únicas para el filtro
   const categories = useMemo(() => {
@@ -885,6 +1183,11 @@ function DesktopReports() {
       categoriesCount,
     }
   }, [])
+
+  // Agregar el mismo handler para guardar el reporte:
+  const handleSaveCustomReport = (newReport: Partial<ReportTemplate>) => {
+    alert(`Reporte "${newReport.name}" creado exitosamente`)
+  }
 
   return (
     <div className="space-y-6">
@@ -952,7 +1255,13 @@ function DesktopReports() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle>Reportes Disponibles</CardTitle>
-                <Button size="sm" className="bg-orange-600 hover:bg-orange-700">
+                {/* Actualizar el botón "Nuevo" en el header de la card:
+                // Reemplazar el botón existente con: */}
+                <Button
+                  size="sm"
+                  className="bg-orange-600 hover:bg-orange-700"
+                  onClick={() => setShowCreateModal(true)}
+                >
                   <Plus className="h-4 w-4 mr-1" />
                   Nuevo
                 </Button>
@@ -1211,6 +1520,10 @@ function DesktopReports() {
       )}
 
       {showPreview && selectedReport && <ReportPreview report={selectedReport} onClose={() => setShowPreview(false)} />}
+
+      {showCreateModal && (
+        <CreateCustomReportModal onClose={() => setShowCreateModal(false)} onSave={handleSaveCustomReport} />
+      )}
     </div>
   )
 }
