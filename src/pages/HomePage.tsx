@@ -29,14 +29,14 @@ const quickStats = [
   },
   {
     title: "Competencias",
-    value: "8",
+    value: "3",
     icon: <Trophy className="h-5 w-5" />,
-    trend: "+2",
+    trend: "+1",
     trendUp: true,
   },
   {
     title: "Medallas 2024",
-    value: "59",
+    value: "42",
     icon: <Award className="h-5 w-5" />,
     trend: "+15%",
     trendUp: true,
@@ -52,120 +52,199 @@ const quickStats = [
 
 // Datos históricos de medallas
 const medalsHistoryData = [
-  { year: "2016", oro: 2, plata: 1, bronce: 1, total: 4 },
-  { year: "2019", oro: 3, plata: 2, bronce: 2, total: 7 },
-  { year: "2020", oro: 4, plata: 2, bronce: 2, total: 8 },
-  { year: "2022", oro: 6, plata: 3, bronce: 1, total: 10 },
-  { year: "2023", oro: 8, plata: 3, bronce: 2, total: 13 },
-  { year: "2024", oro: 9, plata: 2, bronce: 1, total: 12 },
+  { year: "2016", oro: 2, plata: 3, bronce: 4, total: 9 },
+  { year: "2019", oro: 4, plata: 5, bronce: 6, total: 15 },
+  { year: "2020", oro: 3, plata: 4, bronce: 5, total: 12 },
+  { year: "2022", oro: 5, plata: 6, bronce: 7, total: 18 },
+  { year: "2023", oro: 6, plata: 7, bronce: 8, total: 21 },
+  { year: "2024", oro: 8, plata: 9, bronce: 10, total: 27 },
 ]
 
 // Atletas para competencias futuras
 const athletesCompetitionData = [
   {
     id: 1,
-    name: "Laura García",
+    name: "Laura Morales",
     avatar: "/avatars/laura-garcia.png",
-    listaLarga: "Leta",
+    listaLarga: "Mundial",
     listaCorta: 2,
     discipline: "Natación",
     status: "Confirmado",
+    country: "Panamá",
   },
   {
     id: 2,
-    name: "Carlos Santos",
+    name: "Carlos Pérez",
     avatar: "/avatars/carlos-santos.png",
-    listaLarga: "Laten",
+    listaLarga: "Olimpiadas",
     listaCorta: 4,
     discipline: "Atletismo",
     status: "Pendiente",
+    country: "Panamá",
   },
   {
     id: 3,
-    name: "Ana Martinez",
+    name: "Ana Castillo",
     avatar: "/avatars/ana-martinez.png",
-    listaLarga: "Aflet",
+    listaLarga: "Panamericanos",
     listaCorta: 3,
     discipline: "Gimnasia",
     status: "Confirmado",
+    country: "Panamá",
   },
   {
     id: 4,
-    name: "Daniel Lopez",
+    name: "Daniel Sánchez",
     avatar: "/avatars/daniel-lopez.jpg",
-    listaLarga: "Mañana",
+    listaLarga: "Mundial",
     listaCorta: 2,
     discipline: "Ciclismo",
     status: "Confirmado",
+    country: "Panamá",
   },
   {
     id: 5,
-    name: "David Gomez",
+    name: "David Rodríguez",
     avatar: "/avatars/david-gomez.png",
-    listaLarga: "Dromíngiez",
+    listaLarga: "Olimpiadas",
     listaCorta: 1,
     discipline: "Tenis",
     status: "Evaluando",
+    country: "Panamá",
   },
 ]
 
-// Datos de distribución de competencias
+// Datos de distribución de atletas actualizada
 const competitionDistributionData = [
-  { name: "Disponibles", value: 50, color: "#374151" },
-  { name: "Lista Larga", value: 75, color: "#ea580c" },
-  { name: "Cupos Dipó.", value: 25, color: "#9ca3af" },
+  {
+    name: "Natación",
+    listaLarga: 25,
+    listaCorta: 18,
+    cuposDisponibles: 20,
+    montoTotal: 850000,
+    cantidadActual: 18,
+  },
+  {
+    name: "Atletismo",
+    listaLarga: 30,
+    listaCorta: 22,
+    cuposDisponibles: 25,
+    montoTotal: 950000,
+    cantidadActual: 22,
+  },
+  {
+    name: "Gimnasia",
+    listaLarga: 15,
+    listaCorta: 12,
+    cuposDisponibles: 14,
+    montoTotal: 650000,
+    cantidadActual: 12,
+  },
+  {
+    name: "Ciclismo",
+    listaLarga: 20,
+    listaCorta: 15,
+    cuposDisponibles: 18,
+    montoTotal: 750000,
+    cantidadActual: 15,
+  },
+  {
+    name: "Tenis",
+    listaLarga: 12,
+    listaCorta: 8,
+    cuposDisponibles: 10,
+    montoTotal: 450000,
+    cantidadActual: 8,
+  },
 ]
 
 // Atletas con porcentajes de proyección
 const athletesProjectionData = [
-  { name: "Juan Pérez", percentage: 75, avatar: "/avatars/juan-perez.png", discipline: "Natación" },
-  { name: "Andrés Torres", percentage: 82, avatar: "/avatars/andres-torres.png", discipline: "Atletismo" },
-  { name: "Luis Rodríguez", percentage: 65, avatar: "/avatars/luis-rodriguez.png", discipline: "Gimnasia" },
-  { name: "Javier Hernández", percentage: 53, avatar: "/avatars/javier-hernandez.png", discipline: "Ciclismo" },
+  {
+    name: "Juan Mendoza",
+    percentage: 75,
+    avatar: "/avatars/juan-perez.png",
+    discipline: "Natación",
+    country: "Panamá",
+    medals: 6,
+    competitions: 12,
+    economicStimulus: "$15,000",
+  },
+  {
+    name: "Andrés Vega",
+    percentage: 82,
+    avatar: "/avatars/andres-torres.png",
+    discipline: "Atletismo",
+    country: "Panamá",
+    medals: 7,
+    competitions: 15,
+    economicStimulus: "$18,500",
+  },
+  {
+    name: "Luis Aparicio",
+    percentage: 65,
+    avatar: "/avatars/luis-rodriguez.png",
+    discipline: "Gimnasia",
+    country: "Panamá",
+    medals: 4,
+    competitions: 8,
+    economicStimulus: "$12,000",
+  },
+  {
+    name: "Javier Batista",
+    percentage: 53,
+    avatar: "/avatars/javier-hernandez.png",
+    discipline: "Ciclismo",
+    country: "Panamá",
+    medals: 3,
+    competitions: 10,
+    economicStimulus: "$10,500",
+  },
 ]
 
 // Datos de presupuesto por disciplina
 const budgetByDisciplineData = [
-  { discipline: "Gimnasia", budget: "Presupuesto Total", percentage: 85 },
-  { discipline: "Atletismo", budget: "Adigandas", percentage: 70 },
-  { discipline: "Natación", budget: "Completadas", percentage: 60 },
-  { discipline: "Ciclismo", budget: "Personas Necesarias", percentage: 90 },
-  { discipline: "Tenis", budget: "Asignadas", percentage: 75 },
+  { discipline: "Gimnasia", budget: "Mundial", percentage: 85 },
+  { discipline: "Atletismo", budget: "Olimpiadas", percentage: 70 },
+  { discipline: "Natación", budget: "Panamericanos", percentage: 60 },
+  { discipline: "Ciclismo", budget: "Mundial", percentage: 90 },
+  { discipline: "Tenis", budget: "Olimpiadas", percentage: 75 },
 ]
 
 // Datos de logística por federación
 const logisticsByFederationData = [
-  { function: "Asigrtadas", assigned: 4, total: 4, status: "Completo" },
-  { function: "Completadas", assigned: 3, total: 3, status: "Completo" },
-  { function: "Asignadas", assigned: 7, total: 7, status: "Completo" },
+  { function: "Mundial", assigned: 4, total: 4, status: "Completo" },
+  { function: "Olimpiadas", assigned: 3, total: 3, status: "Completo" },
+  { function: "Panamericanos", assigned: 7, total: 7, status: "Completo" },
 ]
 
 // Datos de atención por federación
 const attentionByFederationData = [
-  { type: "Técnica", count: 3, priority: "Alta" },
-  { type: "Médica", count: 2, priority: "Media" },
-  { type: "Legal", count: 1, priority: "Baja" },
+  { type: "Mundial", count: 3, priority: "Alta" },
+  { type: "Olimpiadas", count: 2, priority: "Media" },
+  { type: "Panamericanos", count: 1, priority: "Baja" },
 ]
 
 // Datos de logística por competencia
 const logisticsCompetitionData = [
-  { role: "Acompañante de misión", assigned: 2, total: 2, percentage: 50 },
-  { role: "Utilero", assigned: 1, total: 2, percentage: 25 },
-  { role: "Comptador de pasajes", assigned: 2, total: 3, percentage: 67 },
+  { role: "Mundial", assigned: 2, total: 2, percentage: 50 },
+  { role: "Olimpiadas", assigned: 1, total: 2, percentage: 25 },
+  { role: "Panamericanos", assigned: 2, total: 3, percentage: 67 },
 ]
 
 // Componente Mobile
 function MobileHomepage() {
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCompetition, setSelectedCompetition] = useState("Juegos Panamericanos")
-  const [selectedLogisticsCompetition, setSelectedLogisticsCompetition] = useState("Juegos Olímpicos")
+  const [selectedCompetition, setSelectedCompetition] = useState("Panamericanos")
+  const [selectedLogisticsCompetition, setSelectedLogisticsCompetition] = useState("Olimpiadas")
 
   // Filtrar atletas basado en el término de búsqueda
   const filteredAthletes = athletesCompetitionData.filter(
     (athlete) =>
       athlete.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       athlete.discipline.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      athlete.status.toLowerCase().includes(searchTerm.toLowerCase()),
+      athlete.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      athlete.listaLarga.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
   return (
@@ -225,12 +304,12 @@ function MobileHomepage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Calendar className="h-5 w-5 text-gray-700" />
-              <MobileCardTitle className="text-gray-900">Competencias Futuras</MobileCardTitle>
+              <MobileCardTitle className="text-gray-900">Atletas Clasificados</MobileCardTitle>
             </div>
             <div
               className="flex items-center space-x-1 text-sm text-gray-600 border border-gray-200 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-50"
               onClick={() => {
-                const competitions = ["Juegos Panamericanos", "Juegos Olímpicos", "Mundial 2024", "Sudamericanos 2024"]
+                const competitions = ["Panamericanos", "Olimpiadas", "Mundial"]
                 const currentIndex = competitions.indexOf(selectedCompetition)
                 const nextIndex = (currentIndex + 1) % competitions.length
                 setSelectedCompetition(competitions[nextIndex])
@@ -264,7 +343,9 @@ function MobileHomepage() {
                       </Avatar>
                       <div className="flex-1">
                         <div className="font-medium text-gray-900">{athlete.name}</div>
-                        <div className="text-xs text-gray-500">{athlete.discipline}</div>
+                        <div className="text-xs text-gray-500">
+                          {athlete.discipline} - {athlete.country}
+                        </div>
                       </div>
                       <Badge
                         variant={athlete.status === "Confirmado" ? "default" : "secondary"}
@@ -274,17 +355,17 @@ function MobileHomepage() {
                       </Badge>
                     </div>
 
-                    {/* Información adicional en filas separadas */}
+                    {/* Información adicional en filas separadas
                     <div className="grid grid-cols-2 gap-3 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Lista Larga:</span>
+                        <span className="text-gray-600">Competición:</span>
                         <span className="font-medium text-gray-900">{athlete.listaLarga}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Lista Corta:</span>
                         <span className="font-medium text-gray-900">{athlete.listaCorta}</span>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 ))}
               </div>
@@ -293,7 +374,7 @@ function MobileHomepage() {
             {/* Gráfico de Distribución */}
             <div className="pt-4 border-t border-gray-200">
               <h4 className="text-sm font-medium mb-3 text-gray-900">Distribución de Atletas</h4>
-              <MobileChart type="pie" data={competitionDistributionData} height={180} />
+              <MobileChart type="bar" data={competitionDistributionData} height={180} />
             </div>
           </div>
         </MobileCardContent>
@@ -304,7 +385,7 @@ function MobileHomepage() {
         <MobileCardHeader>
           <div className="flex items-center space-x-2">
             <Target className="h-5 w-5 text-gray-700" />
-            <MobileCardTitle className="text-gray-900">Atletas - Porcentaje de Proyección</MobileCardTitle>
+            <MobileCardTitle className="text-gray-900">Atletas</MobileCardTitle>
           </div>
           <MobileCardDescription className="text-gray-600">Disciplina y porcentaje de proyección</MobileCardDescription>
         </MobileCardHeader>
@@ -330,13 +411,29 @@ function MobileHomepage() {
                     <div className="flex justify-between items-center">
                       <div>
                         <span className="text-sm font-medium text-gray-900">{athlete.name}</span>
-                        <div className="text-xs text-gray-500">{athlete.discipline}</div>
+                        <div className="text-xs text-gray-500">
+                          {athlete.discipline} - {athlete.country}
+                        </div>
                       </div>
                       <span className="text-sm font-bold text-orange-600">{athlete.percentage}%</span>
                     </div>
                   </div>
                 </div>
                 <Progress value={athlete.percentage} className="h-2" />
+                <div className="grid grid-cols-3 gap-2 text-xs text-gray-600 mt-2">
+                  <div className="text-center">
+                    <div className="font-medium text-gray-900">{athlete.medals}</div>
+                    <div>Medallas</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="font-medium text-gray-900">{athlete.competitions}</div>
+                    <div>Competencias</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="font-medium text-gray-900">{athlete.economicStimulus}</div>
+                    <div>Estímulo</div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -348,7 +445,7 @@ function MobileHomepage() {
         <MobileCardHeader>
           <div className="flex items-center space-x-2">
             <DollarSign className="h-5 w-5 text-gray-700" />
-            <MobileCardTitle className="text-gray-900">Atletas por Disciplina</MobileCardTitle>
+            <MobileCardTitle className="text-gray-900">Atletas por Competición</MobileCardTitle>
           </div>
           <MobileCardDescription className="text-gray-600">Presupuesto y asignaciones</MobileCardDescription>
         </MobileCardHeader>
@@ -371,11 +468,11 @@ function MobileHomepage() {
       <MobileCard className="border-gray-200">
         <MobileCardHeader>
           <div className="flex items-center justify-between">
-            <MobileCardTitle className="text-gray-900">Logística por Federación</MobileCardTitle>
+            <MobileCardTitle className="text-gray-900">Logística por Competición</MobileCardTitle>
             <div
               className="flex items-center space-x-1 text-gray-600 border border-gray-200 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-50"
               onClick={() => {
-                const competitions = ["Juegos Olímpicos", "Juegos Panamericanos", "Mundial 2024", "Sudamericanos 2024"]
+                const competitions = ["Olimpiadas", "Panamericanos", "Mundial"]
                 const currentIndex = competitions.indexOf(selectedLogisticsCompetition)
                 const nextIndex = (currentIndex + 1) % competitions.length
                 setSelectedLogisticsCompetition(competitions[nextIndex])
@@ -410,7 +507,7 @@ function MobileHomepage() {
       {/* Atención por Federación */}
       <MobileCard className="border-gray-200">
         <MobileCardHeader>
-          <MobileCardTitle className="text-gray-900">Acción por Federación</MobileCardTitle>
+          <MobileCardTitle className="text-gray-900">Acción por Competición</MobileCardTitle>
         </MobileCardHeader>
         <MobileCardContent>
           <div className="space-y-4">
@@ -443,7 +540,7 @@ function MobileHomepage() {
             <div
               className="flex items-center space-x-1 text-gray-600 border border-gray-200 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-50"
               onClick={() => {
-                const competitions = ["Juegos Olímpicos", "Juegos Panamericanos", "Mundial 2024", "Sudamericanos 2024"]
+                const competitions = ["Olimpiadas", "Panamericanos", "Mundial"]
                 const currentIndex = competitions.indexOf(selectedLogisticsCompetition)
                 const nextIndex = (currentIndex + 1) % competitions.length
                 setSelectedLogisticsCompetition(competitions[nextIndex])
@@ -495,15 +592,16 @@ function MobileHomepage() {
 // Componente Desktop
 function DesktopHomepage() {
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCompetition, setSelectedCompetition] = useState("Juegos Panamericanos")
-  const [selectedLogisticsCompetition, setSelectedLogisticsCompetition] = useState("Juegos Olímpicos")
+  const [selectedCompetition, setSelectedCompetition] = useState("Panamericanos")
+  const [selectedLogisticsCompetition, setSelectedLogisticsCompetition] = useState("Olimpiadas")
 
   // Agregar el filtro de búsqueda
   const filteredAthletes = athletesCompetitionData.filter(
     (athlete) =>
       athlete.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       athlete.discipline.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      athlete.status.toLowerCase().includes(searchTerm.toLowerCase()),
+      athlete.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      athlete.listaLarga.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
   return (
@@ -562,17 +660,12 @@ function DesktopHomepage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Calendar className="h-5 w-5 text-gray-700" />
-                <CardTitle className="text-gray-900">Competencias Futuras</CardTitle>
+                <CardTitle className="text-gray-900">Atletas Clasificados</CardTitle>
               </div>
               <div
                 className="flex items-center space-x-2 text-gray-600 border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                 onClick={() => {
-                  const competitions = [
-                    "Juegos Panamericanos",
-                    "Juegos Olímpicos",
-                    "Mundial 2024",
-                    "Sudamericanos 2024",
-                  ]
+                  const competitions = ["Panamericanos", "Olimpiadas", "Mundial"]
                   const currentIndex = competitions.indexOf(selectedCompetition)
                   const nextIndex = (currentIndex + 1) % competitions.length
                   setSelectedCompetition(competitions[nextIndex])
@@ -588,7 +681,7 @@ function DesktopHomepage() {
               {/* Lista de Atletas */}
               <div>
                 <div className="grid grid-cols-3 gap-4 text-sm font-medium text-gray-600 pb-3 border-b border-gray-200 mb-4">
-                  <span>Lista Larga</span>
+                  <span>Competición</span>
                   <span>Lista Corta</span>
                   <span>Estado</span>
                 </div>
@@ -614,7 +707,9 @@ function DesktopHomepage() {
                       <div className="flex-1 grid grid-cols-3 gap-4">
                         <div>
                           <div className="font-medium text-sm text-gray-900">{athlete.name}</div>
-                          <div className="text-xs text-gray-500">{athlete.discipline}</div>
+                          <div className="text-xs text-gray-500">
+                            {athlete.discipline} - {athlete.country}
+                          </div>
                         </div>
                         <span className="text-sm text-gray-600">{athlete.listaLarga}</span>
                         <Badge
@@ -632,7 +727,7 @@ function DesktopHomepage() {
               {/* Gráfico de Distribución */}
               <div>
                 <h4 className="text-sm font-medium mb-4 text-gray-900">Distribución de Atletas</h4>
-                <MobileChart type="pie" data={competitionDistributionData} height={280} />
+                <MobileChart type="bar" data={competitionDistributionData} height={280} />
               </div>
             </div>
           </CardContent>
@@ -675,13 +770,29 @@ function DesktopHomepage() {
                       <div className="flex justify-between items-center">
                         <div>
                           <span className="text-sm font-medium text-gray-900">{athlete.name}</span>
-                          <div className="text-xs text-gray-500">{athlete.discipline}</div>
+                          <div className="text-xs text-gray-500">
+                            {athlete.discipline} - {athlete.country}
+                          </div>
                         </div>
                         <span className="text-sm font-bold text-orange-600">{athlete.percentage}%</span>
                       </div>
                     </div>
                   </div>
                   <Progress value={athlete.percentage} className="h-2" />
+                  <div className="grid grid-cols-3 gap-2 text-xs text-gray-600 mt-2">
+                    <div className="text-center">
+                      <div className="font-medium text-gray-900">{athlete.medals}</div>
+                      <div>Medallas</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="font-medium text-gray-900">{athlete.competitions}</div>
+                      <div>Competencias</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="font-medium text-gray-900">{athlete.economicStimulus}</div>
+                      <div>Estímulo</div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -695,7 +806,7 @@ function DesktopHomepage() {
               <DollarSign className="h-5 w-5 text-gray-700" />
               <CardTitle className="text-base text-gray-900">Atletas</CardTitle>
             </div>
-            <div className="text-xs text-gray-600">Disciplina</div>
+            <div className="text-xs text-gray-600">Competición</div>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -716,16 +827,11 @@ function DesktopHomepage() {
         <Card className="lg:col-span-1 hover:shadow-md transition-shadow duration-200 border-gray-200">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle className="text-base text-gray-900">Logística por Federación</CardTitle>
+              <CardTitle className="text-base text-gray-900">Logística por Competición</CardTitle>
               <div
                 className="flex items-center space-x-1 text-gray-600 border border-gray-200 px-2 py-1 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                 onClick={() => {
-                  const competitions = [
-                    "Juegos Olímpicos",
-                    "Juegos Panamericanos",
-                    "Mundial 2024",
-                    "Sudamericanos 2024",
-                  ]
+                  const competitions = ["Olimpiadas", "Panamericanos", "Mundial"]
                   const currentIndex = competitions.indexOf(selectedLogisticsCompetition)
                   const nextIndex = (currentIndex + 1) % competitions.length
                   setSelectedLogisticsCompetition(competitions[nextIndex])
@@ -760,7 +866,7 @@ function DesktopHomepage() {
         {/* Atención por Federación */}
         <Card className="lg:col-span-1 hover:shadow-md transition-shadow duration-200 border-gray-200">
           <CardHeader>
-            <CardTitle className="text-base text-gray-900">Acción por Federación</CardTitle>
+            <CardTitle className="text-base text-gray-900">Acción por Competición</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -797,7 +903,7 @@ function DesktopHomepage() {
             <div
               className="flex items-center space-x-1 text-gray-600 border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
               onClick={() => {
-                const competitions = ["Juegos Olímpicos", "Juegos Panamericanos", "Mundial 2024", "Sudamericanos 2024"]
+                const competitions = ["Olimpiadas", "Panamericanos", "Mundial"]
                 const currentIndex = competitions.indexOf(selectedLogisticsCompetition)
                 const nextIndex = (currentIndex + 1) % competitions.length
                 setSelectedLogisticsCompetition(competitions[nextIndex])

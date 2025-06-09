@@ -33,7 +33,6 @@ import {
   Plus,
   Eye,
 } from "lucide-react"
-
 export interface ReportTemplate {
   id: number
   name: string
@@ -59,8 +58,9 @@ export interface ReportTemplate {
 export const reportTemplates: ReportTemplate[] = [
   {
     id: 1,
-    name: "Rendimiento de Atletas",
-    description: "Análisis completo del rendimiento individual y grupal de atletas por disciplina y período",
+    name: "Rendimiento de Atletas Panameños",
+    description:
+      "Análisis completo del rendimiento individual y grupal de atletas panameños por disciplina y competencia",
     category: "Rendimiento",
     type: "Predefinido",
     lastGenerated: "2024-11-15",
@@ -80,8 +80,8 @@ export const reportTemplates: ReportTemplate[] = [
   },
   {
     id: 2,
-    name: "Análisis Financiero",
-    description: "Reporte detallado de presupuestos, gastos y ROI por competencia y disciplina",
+    name: "Análisis Financiero Delegación Panameña",
+    description: "Reporte detallado de presupuestos, gastos y ROI por competencia Mundial, Olimpiadas y Panamericanos",
     category: "Financiero",
     type: "Predefinido",
     lastGenerated: "2024-11-10",
@@ -101,8 +101,8 @@ export const reportTemplates: ReportTemplate[] = [
   },
   {
     id: 3,
-    name: "Medallas y Logros",
-    description: "Resumen de medallas obtenidas, récords establecidos y logros destacados",
+    name: "Medallas y Logros de Panamá",
+    description: "Resumen de medallas obtenidas por atletas panameños en Mundial, Olimpiadas y Panamericanos",
     category: "Competencias",
     type: "Predefinido",
     lastGenerated: "2024-11-12",
@@ -122,8 +122,8 @@ export const reportTemplates: ReportTemplate[] = [
   },
   {
     id: 4,
-    name: "Análisis por Disciplina",
-    description: "Comparativa de rendimiento, inversión y resultados por cada disciplina deportiva",
+    name: "Análisis por Disciplina - Panamá",
+    description: "Comparativa de rendimiento, inversión y resultados por cada disciplina deportiva panameña",
     category: "Rendimiento",
     type: "Predefinido",
     lastGenerated: "2024-11-08",
@@ -143,8 +143,8 @@ export const reportTemplates: ReportTemplate[] = [
   },
   {
     id: 5,
-    name: "Reporte de Competencias",
-    description: "Análisis detallado de participación, resultados y logística de competencias",
+    name: "Reporte de Competencias Internacionales",
+    description: "Análisis detallado de participación panameña en Mundial, Olimpiadas y Panamericanos",
     category: "Competencias",
     type: "Predefinido",
     lastGenerated: "2024-11-14",
@@ -164,8 +164,8 @@ export const reportTemplates: ReportTemplate[] = [
   },
   {
     id: 6,
-    name: "Proyección Olímpica",
-    description: "Análisis predictivo de atletas con potencial olímpico y recomendaciones estratégicas",
+    name: "Proyección Olímpica Panamá",
+    description: "Análisis predictivo de atletas panameños con potencial olímpico y recomendaciones estratégicas",
     category: "Atletas",
     type: "Personalizado",
     lastGenerated: "2024-11-05",
@@ -185,8 +185,8 @@ export const reportTemplates: ReportTemplate[] = [
   },
   {
     id: 7,
-    name: "Eficiencia Logística",
-    description: "Análisis de costos y eficiencia en la gestión logística de delegaciones",
+    name: "Eficiencia Logística Delegación",
+    description: "Análisis de costos y eficiencia en la gestión logística de delegaciones panameñas",
     category: "Logística",
     type: "Predefinido",
     lastGenerated: "2024-11-01",
@@ -206,8 +206,8 @@ export const reportTemplates: ReportTemplate[] = [
   },
   {
     id: 8,
-    name: "Dashboard Ejecutivo",
-    description: "Resumen ejecutivo con KPIs principales y métricas de alto nivel",
+    name: "Dashboard Ejecutivo Panamá",
+    description: "Resumen ejecutivo con KPIs principales del deporte panameño y métricas de alto nivel",
     category: "Rendimiento",
     type: "Predefinido",
     lastGenerated: "2024-11-16",
@@ -227,8 +227,8 @@ export const reportTemplates: ReportTemplate[] = [
   },
   {
     id: 9,
-    name: "Análisis de Lesiones",
-    description: "Seguimiento de lesiones, tiempos de recuperación y prevención",
+    name: "Análisis de Lesiones - Atletas Panameños",
+    description: "Seguimiento de lesiones, tiempos de recuperación y prevención en atletas panameños",
     category: "Atletas",
     type: "Personalizado",
     frequency: "Mensual",
@@ -247,8 +247,8 @@ export const reportTemplates: ReportTemplate[] = [
   },
   {
     id: 10,
-    name: "ROI por Inversión",
-    description: "Análisis de retorno de inversión en atletas, equipamiento y programas",
+    name: "ROI Inversión Deportiva Panamá",
+    description: "Análisis de retorno de inversión en atletas panameños, equipamiento y programas deportivos",
     category: "Financiero",
     type: "Personalizado",
     lastGenerated: "2024-10-28",
@@ -268,7 +268,7 @@ export const reportTemplates: ReportTemplate[] = [
   },
 ]
 
-// Datos para gráficos de ejemplo
+// Datos actualizados para gráficos con contexto panameño
 export const sampleChartData = {
   athletePerformance: [
     { name: "Ene", value: 75 },
@@ -291,11 +291,37 @@ export const sampleChartData = {
     { name: "Tenis", value: 8, color: "#8b5cf6" },
   ],
   medalsHistory: [
-    { year: "2020", oro: 4, plata: 2, bronce: 2 },
-    { year: "2021", oro: 6, plata: 3, bronce: 1 },
-    { year: "2022", oro: 8, plata: 3, bronce: 2 },
-    { year: "2023", oro: 9, plata: 2, bronce: 1 },
-    { year: "2024", oro: 12, plata: 4, bronce: 3 },
+    { year: "2019", oro: 2, plata: 4, bronce: 3 },
+    { year: "2021", oro: 1, plata: 2, bronce: 2 },
+    { year: "2022", oro: 3, plata: 1, bronce: 2 },
+    { year: "2023", oro: 5, plata: 3, bronce: 7 },
+    { year: "2024", oro: 3, plata: 5, bronce: 4 },
+  ],
+  athleteDistribution: [
+    {
+      name: "Mundial",
+      listaLarga: 35,
+      listaCorta: 22,
+      cuposDisponibles: 25,
+      montoTotal: 950000,
+      cantidadActual: 22,
+    },
+    {
+      name: "Olimpiadas",
+      listaLarga: 50,
+      listaCorta: 42,
+      cuposDisponibles: 45,
+      montoTotal: 2500000,
+      cantidadActual: 42,
+    },
+    {
+      name: "Panamericanos",
+      listaLarga: 40,
+      listaCorta: 35,
+      cuposDisponibles: 38,
+      montoTotal: 1800000,
+      cantidadActual: 35,
+    },
   ],
 }
 
