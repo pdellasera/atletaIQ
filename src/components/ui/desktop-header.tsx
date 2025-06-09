@@ -11,7 +11,7 @@ interface DesktopHeaderProps {
   showSearch?: boolean
 }
 
-export function DesktopHeader({ title, showSearch = true }: DesktopHeaderProps) {
+export function DesktopHeader({  showSearch = true }: DesktopHeaderProps) {
   const navigate = useNavigate()
 
   return (
